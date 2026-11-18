@@ -49,7 +49,7 @@ class ConflictError(AppError):
 
 
 class BusinessRuleError(AppError):
-    status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
+    status_code = 422
     code = "business_rule_violation"
     message = "A operação viola uma regra de negócio."
 
@@ -132,7 +132,7 @@ def register_exception_handlers(app: FastAPI) -> None:
             details.append(ErrorDetail(field=".".join(loc) or None, message=message, type=err_type))
         first = details[0].message if details else "Dados inválidos."
         return _error_response(
-            status.HTTP_422_UNPROCESSABLE_ENTITY,
+            422,
             ErrorResponse(code="validation_error", message=first, details=details),
         )
 

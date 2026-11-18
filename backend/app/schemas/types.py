@@ -3,9 +3,15 @@
 from decimal import Decimal
 from typing import Annotated
 
+import email_validator
 from pydantic import AfterValidator, BeforeValidator, EmailStr, Field, PlainSerializer, StringConstraints
 
 from app.utils.validators import normalize_document, normalize_phone_br
+
+# O email-validator recusa domínios de uso especial (RFC 6761), como ".local".
+# Liberamos ".local" para os usuários de desenvolvimento (ex.: admin@crm.local).
+if "local" in email_validator.SPECIAL_USE_DOMAIN_NAMES:
+    email_validator.SPECIAL_USE_DOMAIN_NAMES.remove("local")
 
 
 def _empty_to_none(value: object) -> object:
