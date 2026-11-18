@@ -1,0 +1,25 @@
+# Ambiente
+.env
+*.env.local
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Node / front-end
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Editores / SO
+.idea/
+.DS_Store
+Thumbs.db
